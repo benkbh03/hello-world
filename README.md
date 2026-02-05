@@ -1,1 +1,12 @@
-# hello-world
+<!DOCTYPE html>
+<html>
+<head>
+<title>My First Website</title>
+</head>
+<body>
+<h1>Hello, world</h1>
+<p>This is my first website.</p>
+<p>I study at DTU.</p>
+<a href="https://www.dtu.dk">DTU website</a>
+</body>
+</html>
