@@ -2,107 +2,130 @@
 <html lang="da">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CykelShop</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SportMarkt — køb & sælg udstyr</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
+  <!-- Top header -->
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="#">
+        <span class="brand-mark">sport</span><span class="brand-mark dot">markt.</span>
+      </a>
 
-  <!-- Topbar -->
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <span>Åben i dag fra 09:00-17:30 • Se åbningstider</span>
-      <div class="topbar-right">
-        <span>6 års garanti på cykler</span>
-        <span>🚚 Cykler lige til døren</span>
-        <span>⭐ 4.7 stjerner på TrustPilot</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Header / Nav -->
-  <header class="header">
-    <div class="container header-inner">
-      <div class="logo">
-        <span class="logo-box">cykel</span><span class="logo-box invert">shop</span>
-      </div>
-
-      <nav class="nav">
-        <a href="#">Cykler</a>
-        <a href="#">Beklædning</a>
-        <a href="#">Tilbehør</a>
-        <a href="#">Reservedele</a>
-        <a href="#">Brands</a>
-        <a class="pill" href="#">Outlet</a>
-        <a href="#">Tilbud <span class="dot"></span></a>
-      </nav>
+      <form class="search" id="searchForm" role="search">
+        <input id="searchInput" type="search" placeholder="Søg 100.000+ cykel- og sportsvarer..." autocomplete="off" />
+        <button type="submit" aria-label="Søg">🔎</button>
+      </form>
 
       <div class="header-actions">
-        <button class="icon-btn" aria-label="Søg">🔍</button>
-        <button class="icon-btn" aria-label="Booking">🔧</button>
-        <button class="cart-btn">
-          0 vare i kurven <span class="cart-icon">🛒</span>
-        </button>
+        <button class="pill ghost" id="langBtn" type="button" aria-label="Sprog">🇩🇰</button>
+        <button class="pill ghost" id="loginBtn" type="button">Log ind</button>
+        <button class="pill primary" id="sellBtn" type="button">Sælg</button>
       </div>
     </div>
+
+    <!-- Category nav -->
+    <nav class="catbar">
+      <div class="container cat-row" id="catRow">
+        <button class="cat active" data-cat="Alle">Cykling</button>
+        <button class="cat" data-cat="Mærker">Populære mærker</button>
+        <button class="cat" data-cat="Racer">Racer & Gravel</button>
+        <button class="cat" data-cat="MTB">MTB</button>
+        <button class="cat" data-cat="Dele">Cykeldele</button>
+        <button class="cat" data-cat="Tilbehør">Cykeltilbehør</button>
+        <button class="cat" data-cat="Tøj">Beklædning & sko</button>
+
+        <span class="cat-sep"></span>
+
+        <button class="cat" data-cat="Vintersport">Vintersport <span class="chip">Nyt!</span></button>
+        <button class="cat" data-cat="Løb">Løb <span class="chip">Nyt!</span></button>
+        <button class="cat" id="moreBtn" type="button">☰ Andre</button>
+      </div>
+    </nav>
   </header>
 
-  <!-- Promo bar -->
-  <div class="promo">
-    <div class="promo-track">
-      <div class="promo-item">Se de VILDE tilbud her DK</div>
-      <div class="promo-item">DK 22 års fødselsdagsfest! 🎉</div>
-      <div class="promo-item">Se de VILDE tilbud her DK</div>
-      <div class="promo-item">DK 22 års fødselsdagsfest! 🎉</div>
-      <div class="promo-item">Se de VILDE tilbud her DK</div>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <h1>ALLE SPORTS<br/>ALT UDSTYR<br/>NU LIVE!</h1>
+        <p>Oplev, køb og sælg brugt sportsudstyr til <strong>alle sportsgrene</strong>.</p>
+        <div class="hero-cta">
+          <button class="pill lime" id="heroSellBtn" type="button">
+            SÆLG DIT SPORTSUDSTYR <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-media" aria-hidden="true">
+        <div class="tile t1"></div>
+        <div class="tile t2"></div>
+        <div class="tile t3"></div>
+        <div class="tile t4"></div>
+        <div class="tile t5"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: demand -->
+  <section class="section">
+    <div class="container section-head">
+      <div>
+        <h2>Stor efterspørgsel</h2>
+        <p class="muted">De bedste tilbud på vores mest populære cykler – de varer ikke længe!</p>
+      </div>
+
+      <div class="section-actions">
+        <button class="pill ghost" id="resetBtn" type="button">Nulstil</button>
+        <button class="pill ghost" id="viewMoreBtn" type="button">Vis mere</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="grid" id="productGrid"></div>
+
+      <div class="center">
+        <button class="pill primary wide" id="loadMoreBtn" type="button">Indlæs flere</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal: login -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-top">
+        <h3 id="modalTitle">Log ind</h3>
+        <button class="icon" id="closeModal" aria-label="Luk">✕</button>
+      </div>
+
+      <form id="loginForm" class="modal-form">
+        <label>
+          Email
+          <input type="email" required placeholder="din@email.dk" />
+        </label>
+
+        <label>
+          Password
+          <input type="password" required placeholder="••••••••" />
+        </label>
+
+        <button class="pill primary" type="submit">Fortsæt</button>
+        <p class="muted small">Demo: Formularen viser bare en besked 🙂</p>
+      </form>
     </div>
   </div>
 
-  <!-- Hero -->
-  <main class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-
-    <div class="container hero-inner">
-      <div class="hero-search">
-        <input type="text" placeholder="Søg blandt 10.000+ varer ..." />
-        <button aria-label="Søg">🔍</button>
-      </div>
-
-      <div class="hero-content">
-        <p class="small">22 års</p>
-        <h1>Fødselsdags<span class="accent">fest</span></h1>
-        <p class="tagline">ingen fest • uden en jernhest</p>
-
-        <div class="hero-line"></div>
-        <p class="subnote">Køb nu, betal senere med VIA BILL</p>
-      </div>
-
-      <div class="badges">
-        <div class="badge">
-          <div class="brand">cube</div>
-          <div class="off">-25%</div>
-        </div>
-        <div class="badge">
-          <div class="brand">gripgrab</div>
-          <div class="off">-15%</div>
-        </div>
-        <div class="badge">
-          <div class="brand">abus</div>
-          <div class="off">-20%</div>
-        </div>
-        <div class="badge">
-          <div class="brand">assos</div>
-          <div class="off">-30%</div>
-        </div>
-        <div class="badge">
-          <div class="brand">shimano</div>
-          <div class="off">-40%</div>
-        </div>
-      </div>
+  <footer class="footer">
+    <div class="container footer-row">
+      <p class="muted">© <span id="year"></span> SportMarkt — demo side</p>
+      <a class="muted" href="#">Privatliv</a>
+      <a class="muted" href="#">Kontakt</a>
     </div>
-  </main>
-<script src="script.js"></script>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
